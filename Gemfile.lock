@@ -1,0 +1,34 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    arrayfields (4.9.2)
+    chronic (0.10.2)
+    coerce (0.0.8)
+      chronic (>= 0.6.2)
+    fattr (2.4.0)
+    highline (1.7.10)
+    main (6.2.3)
+      arrayfields (~> 4.7, >= 4.7.4)
+      chronic (~> 0.6, >= 0.6.2)
+      fattr (~> 2.2, >= 2.2.0)
+      map (~> 6.1, >= 6.1.0)
+    map (6.6.0)
+    rake (13.0.1)
+    sekrets (1.11.0)
+      coerce (~> 0.0.3)
+      fattr (~> 2.2)
+      highline (~> 1.6)
+      main (~> 6.1)
+      map (~> 6.3)
+    stomp (1.4.8)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rake
+  sekrets
+  stomp
+
+BUNDLED WITH
+   1.17.2
