@@ -53,3 +53,25 @@ example:
         "host" => `hostname -f`.strip}
 
 
+## Subscription with ack client
+
+First note there is a difference between STOMP1.0 and versions 1.1 
+or higher:
+
+- STOMP_1.0 has only ack: client
+- STOMP_1.1 has also ack: client-individual
+
+The ack cmd is also different, but the `client.ack(msg)` call 
+takes care of the differences.
+
+## nack
+
+On Activemq `nack` means: move msg to DLQ.
+
+But to have something sensible, msg have to be persistent 
+(non-persistent msg are simply discarded) and you'd better 
+add a `individualDeadLetterStrategy`. Without it all messages 
+would add together in a single queue and mess things up.
+
+ 
+
