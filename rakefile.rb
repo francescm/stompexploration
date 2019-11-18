@@ -24,7 +24,6 @@ namespace :explore do
     end
     e = Esb.new
     e.publish msg
-
   end
 
 
@@ -33,6 +32,21 @@ namespace :explore do
     e = Esb.new
     e.subscribe do |msg|
       puts msg
+    end
+  end
+
+  desc "subscribes to a queue to move messages to another destination leveraging transactions"
+  task :shovel => :setup do
+      task_name = ARGV[0]
+      dest = ENV['dest']
+      unless dest
+        puts "usage: rake #{task_name} dest=dest"
+        exit 0
+      end
+    e = Esb.new
+    e.shovel do |client, msg, tx|
+      headers = {suppress_content_length: true, persistent: true, transaction: tx}
+      client.publish dest, msg.body, msg.headers.merge(headers)
     end
 
   end
