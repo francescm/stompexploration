@@ -47,6 +47,7 @@ namespace :explore do
     e.shovel do |client, msg, tx|
       headers = {suppress_content_length: true, persistent: true, transaction: tx}
       client.publish dest, msg.body, msg.headers.merge(headers)
+      raise "boom!"
     end
 
   end

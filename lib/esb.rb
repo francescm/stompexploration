@@ -67,7 +67,8 @@ class Esb
         client.acknowledge(msg, transaction: tx)
         client.commit tx
       rescue Exception => e
-        client.nack msg
+        client.nack(msg)
+        client.abort tx
         $LOGGER.error("Exception: %p" % e.message) if $LOGGER
         client.close
         $LOGGER.info("Client disconnect complete") if $LOGGER
