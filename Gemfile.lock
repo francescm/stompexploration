@@ -14,13 +14,13 @@ GEM
       map (~> 6.1, >= 6.1.0)
     map (6.6.0)
     rake (13.0.1)
-    sekrets (1.11.0)
+    sekrets (1.13.0)
       coerce (~> 0.0.3)
       fattr (~> 2.2)
       highline (~> 1.6)
       main (~> 6.1)
       map (~> 6.3)
-    stomp (1.4.8)
+    stomp (1.4.10)
 
 PLATFORMS
   ruby
@@ -31,4 +31,4 @@ DEPENDENCIES
   stomp
 
 BUNDLED WITH
-   1.17.2
+   2.1.4
