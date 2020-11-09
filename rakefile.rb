@@ -32,6 +32,10 @@ namespace :explore do
     e = Esb.new
     e.subscribe do |msg|
       puts msg
+      puts "processing ..."
+      sleep 5
+      raise "bad dream"
+      sleep 10
     end
   end
 

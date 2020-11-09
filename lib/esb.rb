@@ -1,5 +1,6 @@
 require 'stomp'
 require 'sekrets'
+require_relative 'slogger'
 #require 'logger'
 
 class Esb
@@ -38,9 +39,8 @@ class Esb
 
         $LOGGER.debug("Msg: %p" % msg) if $LOGGER
         yield msg
-        raise "Should exit"
         client.acknowledge(msg)
-        $LOGGER.debug("Ack done maybe") if $LOGGER
+        $LOGGER.debug("Ack done") if $LOGGER
 
       rescue Exception => e
         client.nack msg
@@ -94,6 +94,7 @@ class Esb
   end
 
   def config_hash
+    mylog = Slogger::new  # The client provided STOMP callback logger
     {
         hosts: [
             {
@@ -105,7 +106,8 @@ class Esb
             }
         ],
         connect_headers: {"accept-version" => "1.1,1.2",
-        "host" => `hostname -f`.strip}
+        "host" => `hostname -f`.strip},
+        logger: mylog
     }
   end
 
